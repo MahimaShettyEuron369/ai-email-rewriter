@@ -1,8 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+
+  const [dark, setDark] = useState(false);
+
   const [emailText, setEmailText] = useState("");
   const [purpose, setPurpose] = useState("follow-up");
   const [tone, setTone] = useState("formal");
@@ -10,6 +13,11 @@ export default function Home() {
   const [audience, setAudience] = useState("manager");
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]); 
 
   async function handleRewrite() {
     setLoading(true);
@@ -34,6 +42,18 @@ export default function Home() {
 
   return (
     <main style={{ padding: 40, maxWidth: 1000, margin: "0 auto" }}>
+    <button
+      onClick={() => setDark(!dark)}
+      style={{
+        marginBottom: 20,
+        padding: "6px 12px",
+        border: "1px solid var(--border)",
+        background: "var(--background)",
+        color: "var(--foreground)",
+      }}
+    >
+      {dark ? "Light Mode" : "Dark Mode"}
+    </button>
       <h1>AI Email Rewriter</h1>
 
       <textarea
