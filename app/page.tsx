@@ -74,8 +74,11 @@ export default function Home() {
     null
   );
 
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+
   const [subjectLoading, setSubjectLoading] = useState(false);
   const [subjectError, setSubjectError] = useState<string | null>(null);
+  const [versionHistory, setVersionHistory] = useState<any[]>([]);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
@@ -143,6 +146,12 @@ export default function Home() {
     setResult(data);
     setLoading(false);
   }
+
+  useEffect(() => {
+    fetch("/api/version-history")
+      .then((res) => res.json())
+      .then(setVersionHistory);
+  }, []);
 
   return (
     <main style={{ padding: 40, maxWidth: 1000, margin: "0 auto" }}>
@@ -528,6 +537,66 @@ export default function Home() {
               </small>
             </div>
           ))}
+        </div>
+      )}
+
+      {versionHistory.length > 0 && (
+        <div style={{ marginTop: 40 }}>
+          {/* Header with toggle button */}
+          <div style={{ textAlign: "center", marginBottom: 10 }}>
+            <h3 style={{ display: "inline-block", marginRight: 10 }}>
+              Version History
+            </h3>
+            <button
+              onClick={() => setIsHistoryOpen(!isHistoryOpen)}
+              style={{
+                padding: "2px 6px",
+                fontSize: 12,
+                cursor: "pointer",
+                border: "1px solid #737373ff",
+                borderRadius: 4,
+                backgroundColor: "#f0f0f0",
+              }}
+              className="
+      text-sm px-3 py-1 rounded-md
+      border border-[color:var(--border)]
+      hover:bg-[color:var(--primary)]
+      hover:text-black
+      transition-colors
+    "
+            >
+              {isHistoryOpen ? "Hide" : "Show"}
+            </button>
+          </div>
+
+          {/* Collapsible content */}
+          {isHistoryOpen && (
+            <div className="mt-4 border rounded-md">
+              {versionHistory.map((v) => (
+                <div
+                  key={v.id}
+                  className="p-3 border-b cursor-pointer hover:bg-gray-50"
+                  onClick={() =>
+                    setResult({
+                      rewrites: [
+                        {
+                          email: v.rewritten_email,
+                          explanation: "Restored",
+                        },
+                      ],
+                    })
+                  }
+                >
+                  <div className="text-sm font-medium">
+                    {new Date(v.created_at).toLocaleString()}
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    {v.tone} • {v.length}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </main>

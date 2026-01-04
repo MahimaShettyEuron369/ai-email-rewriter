@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import Groq from "groq-sdk";
 import { z } from "zod";
+import { query } from "@/lib/db";
 
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY!,
@@ -13,7 +14,7 @@ const RequestSchema = z.object({
   tone: z.string(),
   length: z.string(),
   audience: z.string(),
-  mode: z.enum(["rewrite", "grammar"]), 
+  mode: z.enum(["rewrite", "grammar"]),
 });
 
 // ---- Response Validation ----
@@ -34,7 +35,6 @@ export async function POST(req: Request) {
     const parsed = RequestSchema.parse(body);
 
     const isGrammar = parsed.mode === "grammar";
-    
 
     // Construct prompt for model
     const prompt = isGrammar
@@ -51,6 +51,8 @@ STRICT RULES:
 - Each version must be a complete email.
 - Do not return fewer or more than 2 items in the rewrites array.
 - Both versions must differ in word choice while adhering to the above rules.
+- Return a JSON object. All newlines in strings must be escaped as \\n. The JSON must be parseable by JSON.parse().
+
 
 INPUT EMAIL:
 """${parsed.emailText}"""
@@ -83,6 +85,8 @@ STRICT CONSTRAINTS:
 - Frame requests as alignment and clarification, not negotiation or pushback.
 - Each rewritten version must be a complete email including greeting, body, and closing/signature.
 - All newline characters inside strings MUST be escaped as \\n
+- Return a JSON object. All newlines in strings must be escaped as \\n. The JSON must be parseable by JSON.parse().
+
 
 INPUT EMAIL:
 """${parsed.emailText}"""
@@ -137,6 +141,33 @@ OUTPUT FORMAT:
     }
 
     const validated = ResponseSchema.parse(json);
+
+    for (const r of validated.rewrites) {
+      await query(
+        `
+    INSERT INTO email_versions
+    (
+      original_email,
+      rewritten_email,
+      purpose,
+      tone,
+      length,
+      audience,
+      mode
+    )
+    VALUES ($1,$2,$3,$4,$5,$6,$7)
+    `,
+        [
+          parsed.emailText,
+          r.email,
+          parsed.purpose,
+          parsed.tone,
+          parsed.length,
+          parsed.audience,
+          parsed.mode,
+        ]
+      );
+    }
 
     return NextResponse.json(validated);
   } catch (error: any) {
