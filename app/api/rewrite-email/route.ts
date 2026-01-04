@@ -13,7 +13,7 @@ const RequestSchema = z.object({
   tone: z.string(),
   length: z.string(),
   audience: z.string(),
-  mode: z.enum(["rewrite", "grammar"]), // NEW
+  mode: z.enum(["rewrite", "grammar"]), 
 });
 
 // ---- Response Validation ----
@@ -33,19 +33,20 @@ export async function POST(req: Request) {
     const body = await req.json();
     const parsed = RequestSchema.parse(body);
 
-    const prompt =
-      parsed.mode === "grammar"
-        ? `
+    const isGrammar = parsed.mode === "grammar";
+    
+
+    // Construct prompt for model
+    const prompt = isGrammar
+      ? `
 You are a grammar correction assistant.
 
 STRICT RULES:
-- Fix grammar, spelling, punctuation only
-- Do NOT rephrase sentences
-- Do NOT change tone or wording
-- Do NOT add or remove content
-- Preserve sentence structure exactly
-- Output VALID JSON ONLY
-- No explanations, no markdown
+- Fix grammar, spelling, punctuation only.
+- Do NOT rephrase sentences.
+- Preserve sentence structure exactly.
+- Output VALID JSON ONLY.
+- No explanations, no markdown.
 - Generate exactly 2 rewritten versions.
 - Each version must be a complete email.
 - Do not return fewer or more than 2 items in the rewrites array.
@@ -53,6 +54,7 @@ STRICT RULES:
 
 INPUT EMAIL:
 """${parsed.emailText}"""
+
 
 OUTPUT FORMAT:
 {
@@ -68,7 +70,7 @@ OUTPUT FORMAT:
   ]
 }
 `
-        : `
+      : `
 You are a professional email rewriting assistant.
 
 STRICT CONSTRAINTS:
@@ -76,18 +78,11 @@ STRICT CONSTRAINTS:
 - Do NOT add new facts, assumptions, or promises.
 - Improve grammar, clarity, and tone only.
 - Match the specified audience and tone.
-- Output VALID JSON ONLY. No markdown. No commentary.
+- Output VALID JSON ONLY. No markdown or commentary.
 - Avoid language that sounds defensive, confrontational, or accusatory, especially when addressing managers.
-- When the audience is a manager, avoid language that sounds defensive, resistant, or like workload justification.
 - Frame requests as alignment and clarification, not negotiation or pushback.
-- Each rewritten version must be a complete email.
-- A complete email includes: greeting, body, and closing/signature.
-- Do not return standalone greetings, closings, or fragments.
-- If a version is incomplete, regenerate it.
+- Each rewritten version must be a complete email including greeting, body, and closing/signature.
 - All newline characters inside strings MUST be escaped as \\n
-- Do NOT include raw line breaks inside JSON string values
-- Use \\n to represent paragraph breaks
-
 
 INPUT EMAIL:
 """${parsed.emailText}"""
@@ -102,11 +97,11 @@ OUTPUT FORMAT:
 {
   "rewrites": [
     {
-      "email": "full mail body including greeting, body, and closing/signature.",
+      "email": "full mail body including greeting, body, and closing/signature",
       "explanation": "brief explanation of changes"
     },
     {
-      "email": "full mail body including greeting, body, and closing/signature.",
+      "email": "full mail body including greeting, body, and closing/signature",
       "explanation": "brief explanation of changes"
     }
   ]
