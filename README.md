@@ -15,23 +15,38 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<img width="1907" height="957" alt="image" src="https://github.com/user-attachments/assets/650d5186-bb3b-40c2-9bdf-f1c876ce8481" />
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+<img width="1891" height="971" alt="image" src="https://github.com/user-attachments/assets/dd605a51-d602-4d4e-9e9e-b72d6f64c927" />
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+<img width="1901" height="967" alt="image" src="https://github.com/user-attachments/assets/bc07a784-35b1-4c67-8721-eae2754a4617" />
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<img width="1901" height="967" alt="image" src="https://github.com/user-attachments/assets/1dfbf687-122b-4bee-ba11-119be9fb6272" />
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-"# ai-email-rewriter" 
+
+
+<img width="1901" height="916" alt="image" src="https://github.com/user-attachments/assets/f49688f8-51ac-41a5-8546-d087a4ee86cf" />
+
+
+
+<img width="1900" height="973" alt="image" src="https://github.com/user-attachments/assets/a6a92f1b-3088-48f8-b94a-fe3362e28893" />
+
+
+<img width="1890" height="963" alt="image" src="https://github.com/user-attachments/assets/05c51ced-26a2-4ff7-b635-d2f85abd7c86" />
+
+
+
+<img width="1895" height="961" alt="image" src="https://github.com/user-attachments/assets/17a477b8-5dac-4ef0-8ed5-343614fbe7cd" />
+
+
+
+<img width="1893" height="970" alt="image" src="https://github.com/user-attachments/assets/9fbaedcc-2396-4c51-aaae-b727782ea747" />
+
+
+
+
