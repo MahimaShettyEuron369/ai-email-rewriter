@@ -1,23 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Email & Text Rewriter
 
-## Getting Started
+An intuitive web application to rewrite emails or text content with customizable tone, audience, and style. Supports JSON tags, emojis, grammar correction, version history, and dark mode.
 
-First, run the development server:
+---
+
+## Features
+
+1. **Application Page**
+   - Main interface where you can enter your text in the **Subject Prompt** section.
+   - Works for any kind of text input.
+
+2. **Text Rewriting**
+   - Select **Tone** and **Audience**, then click **Rewrite**.
+   - The app suggests **two alternative outputs**.
+   - Easily copy the results with the **Copy to Clipboard** button.
+
+3. **Email Rewrite with JSON & Emojis**
+   - Input emails with **JSON tags** and **emojis**.
+   - The app parses them successfully and delivers **two rewritten outputs**.
+   - Configurable options:
+     - Tone
+     - Audience
+     - Mail Type
+     - Length
+     - Mode: **Rewrite** or **Grammar Correction**
+
+4. **Rewrite with Tone and Purpose**
+   - Produces results according to your chosen **Tone**, **Audience**, and other preferences.
+
+5. **Grammar Mode**
+   - Returns the **same text** corrected for **grammar**, preserving the original meaning.
+
+6. **Version History**
+   - Keeps track of all performed rewrites.
+   - Displays **chosen settings** and **timestamp** for each rewrite.
+
+7. **Dark Mode**
+   - Consistent and reliable **Dark Mode** across the UI.
+
+---
+
+## Installation
+
+1. Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/ai-email-rewriter.git
+
+
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Navigate to the project directory:
+```bash
+cd ai-email-rewriter
+```
 
+3.Install dependencies:
 
-Application Page
+```bash
+npm install   # For Node.js backend
+npm run dev   # For Next.js frontend
+```
+
+## Application Page
 
 This is the main interface of the application.
 
@@ -29,7 +75,7 @@ You can see the Subject Prompt section where you can enter any text you want to 
 
 
 
-Rewriting Text
+## Rewriting Text
 
 After entering your text, select the Tone and Audience, then click Rewrite.
 
@@ -44,7 +90,7 @@ You can use the Copy to Clipboard button to copy any of the suggested texts.
 
 
 
-Email Rewrite with JSON & Emojis
+## Email Rewrite with JSON & Emojis
 
 You can add JSON tags or emojis in your email input.
 
@@ -59,7 +105,7 @@ You can configure: Tone, Audience, Mail Type, Length, and choose between Rewrite
 
 
 
-Rewrite with Tone and Purpose
+## Rewrite with Tone and Purpose
 
 Clicking this option generates results according to the Tone, Audience, and other settings you selected.
 <img width="1901" height="967" alt="image" src="https://github.com/user-attachments/assets/1dfbf687-122b-4bee-ba11-119be9fb6272" />
@@ -68,7 +114,7 @@ Clicking this option generates results according to the Tone, Audience, and othe
 
 
 
-Grammar Mode
+## Grammar Mode
 
 This mode provides the same text but corrected for grammar, without changing the meaning.
 <img width="1901" height="916" alt="image" src="https://github.com/user-attachments/assets/f49688f8-51ac-41a5-8546-d087a4ee86cf" />
@@ -81,7 +127,7 @@ This mode provides the same text but corrected for grammar, without changing the
 
 
 
-Version History
+## Version History
 
 Keeps track of all your performed email rewrites.
 
@@ -100,7 +146,7 @@ You can see the chosen settings (Tone, Audience, etc.) and the timestamp of each
 
 
 
-Dark Mode
+## Dark Mode
 
 The application has a reliable Dark Mode that works consistently across the entire UI.
 <img width="1893" height="970" alt="image" src="https://github.com/user-attachments/assets/9fbaedcc-2396-4c51-aaae-b727782ea747" />
