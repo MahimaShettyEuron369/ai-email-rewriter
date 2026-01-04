@@ -25,6 +25,10 @@ You can see the Subject Prompt section where you can enter any text you want to 
 <img width="1907" height="957" alt="image" src="https://github.com/user-attachments/assets/650d5186-bb3b-40c2-9bdf-f1c876ce8481" />
 
 
+
+
+
+
 Rewriting Text
 
 After entering your text, select the Tone and Audience, then click Rewrite.
@@ -33,6 +37,11 @@ The app will suggest two alternative outputs.
 
 You can use the Copy to Clipboard button to copy any of the suggested texts.
 <img width="1891" height="971" alt="image" src="https://github.com/user-attachments/assets/dd605a51-d602-4d4e-9e9e-b72d6f64c927" />
+
+
+
+
+
 
 
 Email Rewrite with JSON & Emojis
@@ -46,10 +55,17 @@ You can configure: Tone, Audience, Mail Type, Length, and choose between Rewrite
 
 
 
+
+
+
+
 Rewrite with Tone and Purpose
 
 Clicking this option generates results according to the Tone, Audience, and other settings you selected.
 <img width="1901" height="967" alt="image" src="https://github.com/user-attachments/assets/1dfbf687-122b-4bee-ba11-119be9fb6272" />
+
+
+
 
 
 Grammar Mode
@@ -58,15 +74,23 @@ This mode provides the same text but corrected for grammar, without changing the
 <img width="1901" height="916" alt="image" src="https://github.com/user-attachments/assets/f49688f8-51ac-41a5-8546-d087a4ee86cf" />
 
 
+<img width="1900" height="973" alt="image" src="https://github.com/user-attachments/assets/a6a92f1b-3088-48f8-b94a-fe3362e28893" />
+
+
+
+
+
+
 Version History
 
 Keeps track of all your performed email rewrites.
 
 You can see the chosen settings (Tone, Audience, etc.) and the timestamp of each rewrite.
-<img width="1900" height="973" alt="image" src="https://github.com/user-attachments/assets/a6a92f1b-3088-48f8-b94a-fe3362e28893" />
-
-
 <img width="1890" height="963" alt="image" src="https://github.com/user-attachments/assets/05c51ced-26a2-4ff7-b635-d2f85abd7c86" />
+
+
+
+
 
 
 Dark Mode
