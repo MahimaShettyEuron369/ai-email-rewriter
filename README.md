@@ -93,13 +93,16 @@ You can see the chosen settings (Tone, Audience, etc.) and the timestamp of each
 
 
 
-Dark Mode
 
-The application has a reliable Dark Mode that works consistently across the entire UI.
 <img width="1895" height="961" alt="image" src="https://github.com/user-attachments/assets/17a477b8-5dac-4ef0-8ed5-343614fbe7cd" />
 
 
 
+
+
+Dark Mode
+
+The application has a reliable Dark Mode that works consistently across the entire UI.
 <img width="1893" height="970" alt="image" src="https://github.com/user-attachments/assets/9fbaedcc-2396-4c51-aaae-b727782ea747" />
 
 
