@@ -2,6 +2,32 @@
 
 import { useEffect, useState } from "react";
 
+function highlightDifferences(original: string, rewritten: string) {
+  const originalWords = original.split(/\s+/);
+  const rewrittenWords = rewritten.split(/\s+/);
+
+  const originalSet = new Set(originalWords);
+
+  return rewrittenWords.map((word, idx) => {
+    const isChanged = !originalSet.has(word);
+
+    return (
+      <span
+        key={idx}
+        style={{
+          backgroundColor: isChanged
+            ? "rgba(37, 99, 235, 0.15)"
+            : "transparent",
+          padding: isChanged ? "2px 4px" : "0",
+          borderRadius: 4,
+        }}
+      >
+        {word}{" "}
+      </span>
+    );
+  });
+}
+
 export default function Home() {
   const [dark, setDark] = useState(false);
 
@@ -19,6 +45,7 @@ export default function Home() {
 
   const [subjectTone, setSubjectTone] = useState("formal");
   const [subjectAudience, setSubjectAudience] = useState("manager");
+  const [mode, setMode] = useState<"rewrite" | "grammar">("rewrite");
 
   const [subjectLoading, setSubjectLoading] = useState(false);
   const [subjectError, setSubjectError] = useState<string | null>(null);
@@ -26,6 +53,11 @@ export default function Home() {
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
+
+  function copyToClipboard(text: string) {
+    navigator.clipboard.writeText(text);
+    alert("Copied to clipboard");
+  }
 
   async function handleSubjectRewrite() {
     setSubjectLoading(true);
@@ -67,6 +99,7 @@ export default function Home() {
         tone,
         length,
         audience,
+        mode,
       }),
     });
 
@@ -159,6 +192,7 @@ export default function Home() {
           <option value="customer">Customer</option>
         </select>
       </div>
+
 
       <button
         style={{ marginTop: 10 }}
@@ -281,6 +315,23 @@ export default function Home() {
         </select>
       </div>
 
+      <select
+        value={mode}
+        onChange={(e) => setMode(e.target.value as "rewrite" | "grammar")}
+        className="
+          px-3 py-2 rounded-md
+          border border-[color:var(--border)]
+          bg-[color:var(--background)]
+          text-[color:var(--foreground)]
+          focus:outline-none
+          focus:ring-2
+          focus:ring-[color:var(--primary)]
+        "
+      >
+        <option value="rewrite">Rewrite (tone + purpose)</option>
+        <option value="grammar">Grammar only</option>
+      </select>
+
       <button
         onClick={handleRewrite}
         disabled={!emailText || loading}
@@ -304,10 +355,38 @@ export default function Home() {
           <h2>Rewritten Versions</h2>
 
           {result.rewrites.map((r: any, idx: number) => (
-            <div key={idx} style={{ marginTop: 20 }}>
-              <h3>Version {idx + 1}</h3>
-              <p>{r.email}</p>
-              <small>{r.explanation}</small>
+            <div
+              key={idx}
+              className="
+      mt-6 p-4 rounded-md
+      border border-[color:var(--border)]
+      bg-[color:var(--background)]
+    "
+            >
+              <div className="flex justify-between items-center">
+                <h3 className="font-medium">Version {idx + 1}</h3>
+
+                <button
+                  onClick={() => copyToClipboard(r.email)}
+                  className="
+          text-sm px-3 py-1 rounded-md
+          border border-[color:var(--border)]
+          hover:bg-[color:var(--primary)]
+          hover:text-white
+          transition-colors
+        "
+                >
+                  Copy
+                </button>
+              </div>
+
+              <p className="mt-3 whitespace-pre-wrap">
+                {highlightDifferences(emailText, r.email)}
+              </p>
+
+              <small className="text-[color:var(--secondary)]">
+                {r.explanation}
+              </small>
             </div>
           ))}
         </div>
